@@ -31,7 +31,7 @@ import os
 import numpy as np
 import h5py
 
-import Messenger as M
+from . import Messenger as M
 
 DATASET_STRING = 'data'
 

@@ -29,7 +29,7 @@ along with pyrat.  If not, see <http://www.gnu.org/licenses/>.
 import abc
 
 
-class BaseData(object):
+class BaseData(object, metaclass=abc.ABCMeta):
     """
     Abstract class definition defining the required interface for pyrat Data
     objects.
@@ -37,7 +37,6 @@ class BaseData(object):
     Attributes:
 
     """
-    __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
     def init_subgroup(self, spw, nchan, nrecs):

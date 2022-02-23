@@ -84,7 +84,7 @@ class ParsetManager(object):
 
         f.close()
 
-        for i in self.parset_def.iterkeys():
+        for i in self.parset_def.keys():
             if self.parset_def[i][1] is None and not i in parsed_file:
                 raise Exception("Required parameter " + str(i) +
                                 " not included in the parset file!")
@@ -104,17 +104,17 @@ class ParsetManager(object):
             raise Exception("No parset or parset_def available to print.")
 
         if self.parset is None:
-            print "No parset loaded! Printing parset definition."
+            print("No parset loaded! Printing parset definition.")
             self.print_help()
         else:
-            for i in self.parset.iterkeys():
+            for i in self.parset.keys():
                 if len(str(i)) <= self.KEYLEN:
-                    print '    {0:{width}}: {1}'.format(i,
+                    print('    {0:{width}}: {1}'.format(i,
                                                         str(self.parset[i]),
-                                                        width=self.KEYLEN)
+                                                        width=self.KEYLEN))
                 else:
-                    print "    {0}:".format(str(i))
-                    print '                  {0}'.format(self.parset[i])
+                    print("    {0}:".format(str(i)))
+                    print('                  {0}'.format(self.parset[i]))
 
     def print_help(self):
         """
@@ -124,32 +124,32 @@ class ParsetManager(object):
         if self.parset_def is None:
             raise Exception("No parameters have been defined!")
 
-        print "ParsetManager v." + VERSION
-        print "*****************************"
-        print "ParameterSet file definition "
-        print "*****************************"
-        print "File syntax:"
-        print "    + A valid parset file consists of one pair of parameter" + \
-            " name and parameter value per line,"
-        print "      separated by a " + self.DELIMITER_CHAR + " character," + \
-            " like so"
-        print ""
-        print "      parameter_name " + self.DELIMITER_CHAR + " value"
-        print ""
-        print "    + Lines beginning with " \
-            + self.COMMENT_CHAR + " are skipped."
-        print "    + Lines containing invalid parameters are ignored."
-        print "    + White space and empty lines are ignored."
-        print "    + Parameters with a default value of None are required."
-        print "    + Boolean flags should be specified as 1 for True " + \
-            "and 0 for False."
-        print ""
-        print "Parameters:"
-        for i in self.parset_def.iterkeys():
+        print("ParsetManager v." + VERSION)
+        print("*****************************")
+        print("ParameterSet file definition ")
+        print("*****************************")
+        print("File syntax:")
+        print("    + A valid parset file consists of one pair of parameter" + \
+            " name and parameter value per line,")
+        print("      separated by a " + self.DELIMITER_CHAR + " character," + \
+            " like so")
+        print("")
+        print("      parameter_name " + self.DELIMITER_CHAR + " value")
+        print("")
+        print("    + Lines beginning with " \
+            + self.COMMENT_CHAR + " are skipped.")
+        print("    + Lines containing invalid parameters are ignored.")
+        print("    + White space and empty lines are ignored.")
+        print("    + Parameters with a default value of None are required.")
+        print("    + Boolean flags should be specified as 1 for True " + \
+            "and 0 for False.")
+        print("")
+        print("Parameters:")
+        for i in self.parset_def.keys():
             if len(str(i)) <= self.KEYLEN:
-                print '    {0:{width}}: {1}'.format(str(i),
+                print('    {0:{width}}: {1}'.format(str(i),
                                                     self.parset_def[i][2],
-                                                    width=self.KEYLEN)
+                                                    width=self.KEYLEN))
             else:
-                print '    {0}:'.format(str(i))
-                print '                  {0}'.format(self.parset_def[i][2])
+                print('    {0}:'.format(str(i)))
+                print('                  {0}'.format(self.parset_def[i][2]))

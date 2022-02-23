@@ -137,7 +137,7 @@ class Messenger(object):
         """
         """
 
-        print cmod + msg + self.ENDC
+        print(cmod + msg + self.ENDC)
         if type(self.logfile) is str:
             self.f.write(msg + '\n')
 

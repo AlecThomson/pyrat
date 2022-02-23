@@ -29,10 +29,10 @@ data.
 from pyrap import tables as pt
 import h5py
 import numpy as np
-import Messenger as M
-from BaseRAData import BaseData
+from . import Messenger as M
+from .BaseRAData import BaseData
 import os
-from Constants import *
+from .Constants import *
 
 GROUP_BASE_STRING = 'SPW'
 DATASET_STRING = 'data'
@@ -94,7 +94,7 @@ class Coordinates(object):
         Returns:
 
         """
-        if isinstance(spw, str) or isinstance(spw, unicode):
+        if isinstance(spw, str) or isinstance(spw, str):
             g = self.f[spw]
         else:
             g = self.f[GROUP_BASE_STRING + str(spw)]
@@ -112,7 +112,7 @@ class Coordinates(object):
         Returns:
 
         """
-        if isinstance(spw, str) or isinstance(spw, unicode):
+        if isinstance(spw, str) or isinstance(spw, str):
             g = self.f[spw]
         else:
             g = self.f[GROUP_BASE_STRING + str(spw)]
@@ -135,7 +135,7 @@ class Coordinates(object):
 
         l2min = None
 
-        for i in self.f.iterkeys():
+        for i in self.f.keys():
             freqs = self.get_freqs(i)
             if l2min is None or min(freqs) < l2min:
                 l2min = min(freqs)
@@ -151,7 +151,7 @@ class Coordinates(object):
         Returns:
 
         """
-        if isinstance(spw, str) or isinstance(spw, unicode):
+        if isinstance(spw, str) or isinstance(spw, str):
             g = self.f[spw]
         else:
             g = self.f[GROUP_BASE_STRING + str(spw)]
@@ -226,7 +226,7 @@ class Data(BaseData):
         self.f = _create_file(fn)
 
         # Check to make sure the coordinates have the correct shape
-        for spw in self.f.iterkeys():
+        for spw in self.f.keys():
             d = self.f[spw][DATASET_STRING]
             c = self.coords.f[spw][COORDSET_STRING]
 
@@ -253,7 +253,7 @@ class Data(BaseData):
             Nothing
         """
 
-        for i in skeleton.f.iterkeys():
+        for i in skeleton.f.keys():
             g = self.f.create_group(i)
             g.create_dataset(DATASET_STRING,
                              shape=skeleton.f[i][DATASET_STRING].shape,
@@ -292,7 +292,7 @@ class Data(BaseData):
         else:
             raise Exception("Operation with invalid data type.")
 
-        for spw in self.f.iterkeys():
+        for spw in self.f.keys():
             ds = self.f[spw][DATASET_STRING]
             if othertype == DO:
                 do = other.f[spw][DATASET_STRING]
@@ -377,7 +377,7 @@ class Data(BaseData):
         Returns:
             Nothing
         """
-        if isinstance(spw, str) or isinstance(spw, unicode):
+        if isinstance(spw, str) or isinstance(spw, str):
             g = self.f[spw]
         else:
             g = self.f[GROUP_BASE_STRING + str(spw)]
@@ -397,7 +397,7 @@ class Data(BaseData):
         Returns:
             A numpy array containing all data from a single channel.
         """
-        if isinstance(spw, str) or isinstance(spw, unicode):
+        if isinstance(spw, str) or isinstance(spw, str):
             g = self.f[spw]
         else:
             g = self.f[GROUP_BASE_STRING + str(spw)]
@@ -467,7 +467,7 @@ class Data(BaseData):
         Returns:
 
         """
-        return self.f.iterkeys()
+        return iter(self.f.keys())
 
 
 class PolData(BaseData):
@@ -527,7 +527,7 @@ class PolData(BaseData):
         Returns:
 
         """
-        return self.Q.f.iterkeys()
+        return iter(self.Q.f.keys())
 
     def put_coords(self, u, v, spw, chan):
         """
@@ -949,7 +949,7 @@ def read_data_from_ms(msfn, vis, noise, viscol="DATA", noisecol='SIGMA',
                 vis.store_records([Qvis_array, Uvis_array], i, j)
 
             if mode == 'tot':
-                print 'total intensities'
+                print('total intensities')
                 for k in range(nrecs_stab):
                     data_rec = data_recs[k] * (1. - flag_recs[k])
                     vis_array[k] = np.dot(Spart, data_rec)
