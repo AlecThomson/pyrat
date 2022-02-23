@@ -11,6 +11,7 @@ setup(name='pyrat',
       author="Michael Bell",
       author_email='mrbell@mpa-garching.mpg.de',
       packages=['pyrat'],
+      py_modules=['fsclean'],
       package_dir={'pyrat': ''},
       install_requires=REQUIRED
 )
