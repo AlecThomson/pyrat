@@ -166,7 +166,7 @@ class BaseData(object, metaclass=abc.ABCMeta):
         return
 
     @abc.abstractmethod
-    def iterkeys(self):
+    def keys(self):
         """
         Desc.
 

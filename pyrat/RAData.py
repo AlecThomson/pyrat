@@ -518,7 +518,7 @@ class PolData(BaseData):
         if self.Q._initialized and self.U._initialized:
             self._initialized = True
 
-    def iterkeys(self):
+    def keys(self):
         """
         Desc.
 
