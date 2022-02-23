@@ -23,7 +23,7 @@ Prerequisites for pyrat include
 
   - python
   - numpy
-  - [pyrap](https://code.google.com/p/pyrap/)
+  - python-casacore
   - h5py
 
 To install, simply type

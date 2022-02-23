@@ -26,7 +26,7 @@ Module containing objects useful for dealing with interferometric visibility
 data.
 """
 
-from pyrap import tables as pt
+from casacore import tables as pt
 import h5py
 import numpy as np
 from . import Messenger as M
