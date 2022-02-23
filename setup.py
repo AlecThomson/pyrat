@@ -1,4 +1,5 @@
 from distutils.core import setup
+from setuptools import find_packages
 
 REQUIRED = [
     'numpy',
@@ -10,8 +11,9 @@ setup(name='pyrat',
       description='Python Radio Astronomy Toolkit',
       author="Michael Bell",
       author_email='mrbell@mpa-garching.mpg.de',
-      packages=['pyrat'],
-      py_modules=['fsclean'],
-      package_dir={'pyrat': ''},
+      # packages=['pyrat'],
+      # py_modules=['pyrat'],
+      packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
+      # package_dir={'pyrat': ''},
       install_requires=REQUIRED
 )
