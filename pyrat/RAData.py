@@ -458,7 +458,7 @@ class Data(BaseData):
         func = lambda a, b: a / b
         self._looped_operation(other, target, func)
 
-    def iterkeys(self):
+    def keys(self):
         """
         Desc.
 
